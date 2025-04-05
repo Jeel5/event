@@ -3,9 +3,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Mail, MapPin, Phone, Calendar, Send } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -22,22 +22,50 @@ const Contact = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID,
+        {
+          from_name: formState.name,
+          reply_to: formState.email,
+          subject: formState.subject,
+          city: formState.city,
+          event_name: formState.eventName,
+          event_date: formState.eventDate,
+          message: formState.message,
+          time: new Date().toLocaleString(),
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      console.log(formState)
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_CLIENT_TEMPLATE_ID,
+        {
+          to_name: formState.name,
+            to_email: formState.email,
+          subject: `Thank you for contacting Samarthya Events regarding ${formState.eventName}`,
+          event_name: formState.eventName,
+          event_date: formState.eventDate,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
       
-      // Reset form after submission
+      setIsSubmitted(true);
       setFormState({
         name: '',
         city: '',
@@ -48,11 +76,16 @@ const Contact = () => {
         message: '',
       });
       
-      // Reset submission state after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 1500);
+      
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitError('There was an error sending your message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -221,6 +254,12 @@ const Contact = () => {
                       placeholder="Share your event details, requirements, or any questions you may have..."
                     />
                   </div>
+                  
+                  {submitError && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-sm">
+                      {submitError}
+                    </div>
+                  )}
                   
                   <button
                     type="submit"

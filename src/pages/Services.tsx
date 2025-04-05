@@ -19,7 +19,7 @@ const Services = () => {
 
   const services = [
     {
-      id: 'decoration-services',
+      id: 'decoration',
       image: decorImage,
       title: 'Decoration',
     },

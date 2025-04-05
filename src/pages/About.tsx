@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import pfp from '../assets/pfp.jpg'
 import { useRef, useEffect } from 'react';
 
 const About = () => {
@@ -32,7 +33,7 @@ const About = () => {
           <div className="scroll-animate">
             <div className="aspect-square rounded-sm overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                src={pfp}
                 alt="Company founder" 
                 className="w-full h-full object-cover"
               />
