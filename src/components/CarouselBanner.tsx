@@ -2,7 +2,8 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/button';
+import { cn } from '@/lib/utils';
 
 const carouselItems = [
   {
@@ -28,6 +29,7 @@ const CarouselBanner = () => {
   const [activeSlogan, setActiveSlogan] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
+  const [textVisible, setTextVisible] = useState(false);
   const fullTextRef = useRef(slogans[activeSlogan]);
   const indexRef = useRef(0);
   
@@ -46,26 +48,42 @@ const CarouselBanner = () => {
     setIsTyping(true);
     indexRef.current = 0;
     
-    // Remove the separate first letter logic and use a simpler approach
-    const typingInterval = setInterval(() => {
-      if (indexRef.current < fullTextRef.current.length) {
-        setDisplayText(fullTextRef.current.substring(0, indexRef.current + 1));
-        indexRef.current += 1;
-      } else {
-        clearInterval(typingInterval);
-        setIsTyping(false);
-        
-        // Set timeout to switch to the next slogan after 3 seconds
-        const switchTimeout = setTimeout(() => {
-          setActiveSlogan(prev => (prev === 0 ? 1 : 0));
-        }, 3000);
-        
-        return () => clearTimeout(switchTimeout);
-      }
-    }, 100);
+    // Start with text hidden, then animate it in
+    setTextVisible(false);
+    setTimeout(() => setTextVisible(true), 100);
     
-    return () => clearInterval(typingInterval);
+    // Add a small delay before starting typing
+    const initialDelay = setTimeout(() => {
+      const typingInterval = setInterval(() => {
+        if (indexRef.current < fullTextRef.current.length) {
+          setDisplayText(fullTextRef.current.substring(0, indexRef.current + 1));
+          indexRef.current += 1;
+        } else {
+          clearInterval(typingInterval);
+          setIsTyping(false);
+          
+          // Set timeout to switch to the next slogan after 3 seconds
+          const switchTimeout = setTimeout(() => {
+            setActiveSlogan(prev => (prev === 0 ? 1 : 0));
+          }, 3000);
+          
+          return () => clearTimeout(switchTimeout);
+        }
+      }, 100);
+      
+      return () => clearInterval(typingInterval);
+    }, 600); // Delay before typing starts
+    
+    return () => clearTimeout(initialDelay);
   }, [activeSlogan]);
+
+  // Format the display text to highlight the first letter
+  const formattedText = displayText ? (
+    <>
+      <span className="text-luxe-gold">{displayText.charAt(0)}</span>
+      {displayText.substring(1)}
+    </>
+  ) : '';
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -82,7 +100,7 @@ const CarouselBanner = () => {
   }, [emblaApi, autoplay]);
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-screen flex items-center pt-16 md:pt-20 overflow-hidden">
+    <section className="relative min-h-[70vh] md:min-h-screen mt-8 flex items-center pt-16 md:pt-20 overflow-hidden">
       <div className="w-full h-[70vh] md:h-screen" ref={emblaRef}>
         <div className="flex h-full">
           {carouselItems.map((item, index) => (
@@ -123,11 +141,18 @@ const CarouselBanner = () => {
         </Button>
       </div>
       
-      {/* Centered Text Overlay */}
+      {/* Centered Text Overlay with animation */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <div className="text-center p-4 md:p-8 bg-black/40 backdrop-blur-sm rounded-lg max-w-3xl mx-auto">
+        <div 
+          className={cn(
+            "text-center p-4 md:p-8 bg-black/40 backdrop-blur-sm rounded-lg max-w-3xl mx-auto transition-all duration-1000 transform",
+            textVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 -translate-y-20"
+          )}
+        >
           <h2 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-white mb-4 min-h-[3rem] md:min-h-[4rem]">
-            {displayText}
+            {formattedText}
             {isTyping && <span className="animate-pulse">|</span>}
           </h2>
         </div>

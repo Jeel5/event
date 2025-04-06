@@ -4,8 +4,6 @@ import Navbar from '@/components/Navbar';
 import CarouselBanner from '@/components/CarouselBanner';
 import DescriptionSection from '@/components/DescriptionSection';
 import Services from '@/components/Services';
-import Gallery from '@/components/Gallery';
-import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -47,8 +45,6 @@ const Index = () => {
       <CarouselBanner />
       <DescriptionSection />
       <Services />
-      <Gallery />
-      <Testimonials />
       <Footer />
     </div>
   );

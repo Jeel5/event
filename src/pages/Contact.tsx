@@ -315,42 +315,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-sm text-luxe-taupe mb-1">Call Us</p>
-                    <a href="tel:+918866793934" className="text-lg text-luxe-charcoal hover:text-luxe-gold transition-colors">
-                      +91 88667 93934
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="p-3 rounded-sm bg-luxe-blush/50 mr-4">
-                    <Calendar className="h-6 w-6 text-luxe-gold" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-luxe-taupe mb-1">Office Hours</p>
-                    <p className="text-lg text-luxe-charcoal">
-                      Monday - Friday: 9am - 6pm<br />
-                      Saturday: 10am - 4pm<br />
-                      Sunday: By appointment only
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="p-3 rounded-sm bg-luxe-blush/50 mr-4">
-                    <MapPin className="h-6 w-6 text-luxe-gold" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-luxe-taupe mb-1">Visit Our Studio</p>
-                    <p className="text-lg text-luxe-charcoal">
-                      Address
-                    </p>
-                    <a 
-                      href="https://maps.google.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-luxe-gold text-sm uppercase tracking-wider mt-2 inline-block elegant-underline"
-                    >
-                      Get Directions
+                    <a href="tel:+919173864156" className="text-lg text-luxe-charcoal hover:text-luxe-gold transition-colors">
+                      +919173864156
                     </a>
                   </div>
                 </div>
@@ -359,7 +325,7 @@ const Contact = () => {
               <div className="mt-auto">
                 <h3 className="font-display text-xl text-luxe-charcoal mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="p-3 bg-luxe-cream rounded-sm text-luxe-gold hover:bg-luxe-gold hover:text-white transition-colors">
+                  <a href="https://www.instagram.com/samarthyaevents?igsh=MWs4MjN3Y2V2NGE0Mw%3D%3D&utm_source=qr" className="p-3 bg-luxe-cream rounded-sm text-luxe-gold hover:bg-luxe-gold hover:text-white transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                     </svg>
@@ -385,73 +351,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      
-      {/* Map Section */}
-      <section className="py-20 bg-luxe-cream">
-        <div className="luxe-container">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-medium mb-4">
-              Visit Our Studio
-            </h2>
-            <p className="text-luxe-taupe">
-              Schedule an in-person consultation to discuss your vision in our elegant planning studio.
-            </p>
-          </div>
-          
-          <div className="rounded-sm overflow-hidden shadow-soft h-96">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6175903063953!2d-73.9888832!3d40.7445794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9aeb1c6b5%3A0x35b1cfbc89a6097f!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1679234367548!5m2!1sen!2sus" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
-      </section>
-      
-      {/* FAQ Section */}
-      <section className="py-20 md:py-32 bg-white">
-        <div className="luxe-container">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="section-subtitle">Common Questions</p>
-            <h2 className="section-title">Frequently Asked Questions</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="p-8 bg-luxe-cream rounded-sm shadow-soft border border-luxe-gold/10">
-              <h3 className="font-display text-xl text-luxe-charcoal mb-4">When should I book a wedding planner?</h3>
-              <p className="text-luxe-taupe">
-                We recommend securing your wedding planner 9-12 months before your wedding date, or as soon as you're engaged for destination weddings. This allows ample time for venue selection, vendor bookings, and design development.
-              </p>
-            </div>
-            
-            <div className="p-8 bg-luxe-cream rounded-sm shadow-soft border border-luxe-gold/10">
-              <h3 className="font-display text-xl text-luxe-charcoal mb-4">What services do you offer?</h3>
-              <p className="text-luxe-taupe">
-                We offer comprehensive wedding planning services including full planning, day-of coordination, design and styling, vendor selection, and destination wedding planning. Each package can be customized to your specific needs.
-              </p>
-            </div>
-            
-            <div className="p-8 bg-luxe-cream rounded-sm shadow-soft border border-luxe-gold/10">
-              <h3 className="font-display text-xl text-luxe-charcoal mb-4">How much does wedding planning cost?</h3>
-              <p className="text-luxe-taupe">
-                Our services are tailored to each couple's unique needs and wedding scale. We offer packages starting at $3,500 for day-of coordination and comprehensive planning services starting at $8,500. We'll provide a detailed quote after understanding your vision.
-              </p>
-            </div>
-            
-            <div className="p-8 bg-luxe-cream rounded-sm shadow-soft border border-luxe-gold/10">
-              <h3 className="font-display text-xl text-luxe-charcoal mb-4">Do you travel for destination weddings?</h3>
-              <p className="text-luxe-taupe">
-                Absolutely! We specialize in destination weddings and have planned celebrations across the globe. Travel fees are determined based on location and duration, and we'll include these details in your custom proposal.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
       <Footer />
     </div>
   );
